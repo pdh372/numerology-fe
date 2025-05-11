@@ -1,13 +1,13 @@
-'use client';
-
-import { useNumerologyStore } from '@/stores/numerology';
+import { AttitudeIndex, DateOfBirthIndex, LifePathIndex } from '@/components/formula';
 
 const Analysis = () => {
-  const { numerology } = useNumerologyStore();
-
   return (
-    <div>
-      {numerology.day} {numerology.month} {numerology.year}
+    <div className='flex flex-col gap-3'>
+      <DateOfBirthIndex />
+
+      <AttitudeIndex />
+
+      <LifePathIndex />
     </div>
   );
 };

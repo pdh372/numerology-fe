@@ -2,13 +2,15 @@
 
 import { useState, ChangeEventHandler } from 'react';
 import { Input, Button, Card, CardBody, CardHeader } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
 
 import { useNumerologyStore } from '@/stores/numerology';
 
 const Home = () => {
   const currentYear = new Date().getFullYear();
   const [error, setError] = useState<string>('');
-  const { setDay, setMonth, setYear, numerology } = useNumerologyStore();
+  const { setDay, setMonth, setYear, setName, numerology } = useNumerologyStore();
+  const router = useRouter();
 
   const getDaysInMonth = (month: number, year: number) => {
     return new Date(year, month, 0).getDate();
@@ -92,7 +94,7 @@ const Home = () => {
 
   const handleDateChange = () => {
     if (validateDate()) {
-      console.log(numerology);
+      router.push('/analysis');
     }
   };
 
@@ -102,6 +104,16 @@ const Home = () => {
         <CardHeader className='text-lg font-bold text-center text-pink-500'>Thần Số Học</CardHeader>
         <CardBody className='space-y-4'>
           <div className='space-y-2'>
+            <Input
+              label='Tên'
+              placeholder='Nhập tên ví dụ: Phạm Thị Thu Hà'
+              size='sm'
+              type='text'
+              value={numerology.name}
+              variant='bordered'
+              onChange={(e) => setName(e.target.value)}
+            />
+
             {/* Năm nhập */}
             <Input
               label='Năm'
@@ -138,7 +150,13 @@ const Home = () => {
 
           {error && <p className='text-sm text-red-600'>{error}</p>}
 
-          <Button fullWidth color='primary' size='sm' onPress={handleDateChange}>
+          <Button
+            fullWidth
+            color='primary'
+            isDisabled={Object.values(numerology).some((value) => !value)}
+            size='sm'
+            onPress={handleDateChange}
+          >
             Xem kết quả
           </Button>
         </CardBody>
