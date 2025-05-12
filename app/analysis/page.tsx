@@ -4,8 +4,15 @@ import { Button } from '@heroui/button';
 import { Divider } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 
-import { AttitudeNumber, DateOfBirthNumber, LifePathNumber } from '@/components/formula';
-import { SoulUrgeNumber } from '@/components/formula/soul-urge-number';
+import {
+  AttitudeNumber,
+  DateOfBirthNumber,
+  LifePathNumber,
+  MissionNumber,
+  PersonalityNumber,
+  SoulUrgeNumber,
+} from '@/components/formula';
+import { NumerologyChart } from '@/components/formula/numerology-chart';
 
 const Analysis = () => {
   const router = useRouter();
@@ -26,6 +33,12 @@ const Analysis = () => {
         <LifePathNumber />
 
         <SoulUrgeNumber />
+
+        <PersonalityNumber />
+
+        <MissionNumber />
+
+        <NumerologyChart />
       </div>
     </div>
   );

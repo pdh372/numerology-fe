@@ -4,6 +4,7 @@ import { Card, CardBody } from '@heroui/card';
 import { Button } from '@heroui/button';
 import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDisclosure } from '@nextui-org/react';
 
+import { processNumbers } from '@/util/number.util';
 import { useNumerologyStore } from '@/stores/numerology';
 
 export const AttitudeNumber = () => {
@@ -15,25 +16,13 @@ export const AttitudeNumber = () => {
       .split('')
       .map(Number)
       .filter((n) => !isNaN(n));
-    let sum = digits.reduce((acc, n) => acc + n, 0);
 
-    if (sum === 11) return '11/2';
-    if (sum === 22) return '22/4';
-    if (sum === 33) return '33/6';
-
-    if (sum > 9) {
-      sum = sum
-        .toString()
-        .split('')
-        .reduce((acc, n) => acc + Number(n), 0);
-    }
-
-    return sum.toString();
+    return processNumbers(digits);
   }
 
   return (
     <div>
-      <Card className='p-6 rounded-2xl shadow-2xl bg-white relative'>
+      <Card className='p-2 rounded-2xl shadow-2xl bg-white relative'>
         <CardBody className='space-y-4'>
           <Button
             className='text-xl font-bold text-primary cursor-pointer inline-block p-0 border-3'
@@ -59,7 +48,7 @@ export const AttitudeNumber = () => {
         <DrawerContent>
           {(onClose) => (
             <>
-              <DrawerHeader className='flex flex-col gap-1'>😊 Chỉ số Thái độ (TĐ)</DrawerHeader>
+              <DrawerHeader className='flex flex-col gap-1'>Chỉ số Thái độ (TĐ)</DrawerHeader>
               <DrawerBody>
                 <div className='text-sm p-4 rounded-xl border shadow-sm bg-gray-50'>
                   <p className='font-semibold mb-2 text-gray-800'>📖 Ý nghĩa:</p>

@@ -8,16 +8,14 @@ import { processNumbers } from '@/util/number.util';
 import { useNumerologyStore } from '@/stores/numerology';
 import { toEnglishLike, vowelMap, nameNormalizing } from '@/util/string.util';
 
-export const SoulUrgeNumber = () => {
+export const MissionNumber = () => {
   const { numerology } = useNumerologyStore();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  function getSoulNumber(fullName: string): string {
+  function getMissionNumber(fullName: string): string {
     const nameNormalized = nameNormalizing(fullName);
 
-    const mapped = nameNormalized
-      .map((_, index, chars) => vowelMap(chars.join(''), index))
-      .filter((item) => item.isVowel);
+    const mapped = nameNormalized.map((char) => vowelMap(char, 0));
 
     return processNumbers(mapped.map((item) => item.number));
   }
@@ -31,7 +29,7 @@ export const SoulUrgeNumber = () => {
             variant='light'
             onPress={onOpen}
           >
-            🕊️ Chỉ số Linh hồn (LH)
+            🌟 Chỉ số Sứ mệnh (SM)
           </Button>
 
           <p className='text-gray-700'>
@@ -39,26 +37,13 @@ export const SoulUrgeNumber = () => {
           </p>
 
           <p className='text-gray-700'>
-            Ký tự được tính (nguyên âm):{' '}
-            <span className='font-semibold text-blue-500'>
-              {toEnglishLike(numerology.name)
-                .toLowerCase()
-                .split('')
-                .map((ch, i, arr) => {
-                  const isVowel = vowelMap(arr.join(''), i)?.isVowel;
-
-                  return (
-                    <span key={i} className={isVowel ? 'text-blue-500' : 'text-gray-300'}>
-                      {ch}
-                    </span>
-                  );
-                })}
-            </span>
+            Họ tên tính toán:{' '}
+            <span className='font-semibold'>{toEnglishLike(numerology.name).toLocaleLowerCase()}</span>
           </p>
 
           <p className='text-gray-700'>
-            Chỉ số LH sau khi rút gọn:{' '}
-            <span className='font-semibold text-primary'>{getSoulNumber(numerology.name)}</span>
+            Chỉ số SM sau khi rút gọn:{' '}
+            <span className='font-semibold text-primary'>{getMissionNumber(numerology.name)}</span>
           </p>
         </CardBody>
       </Card>
@@ -67,17 +52,17 @@ export const SoulUrgeNumber = () => {
         <DrawerContent>
           {(onClose) => (
             <>
-              <DrawerHeader className='flex flex-col gap-1'>Chỉ số Linh hồn (LH)</DrawerHeader>
+              <DrawerHeader className='flex flex-col gap-1'>Chỉ số Sứ mệnh (SM)</DrawerHeader>
               <DrawerBody>
                 <div className='text-sm p-4 rounded-xl border shadow-sm bg-gray-50'>
                   <p className='font-semibold mb-2 text-gray-800'>📖 Ý nghĩa:</p>
                   <p className='text-gray-700'>
-                    Chỉ số Linh hồn tiết lộ <span className='font-medium'>mong muốn sâu thẳm</span> bên trong bạn — điều
-                    thúc đẩy bạn hành động và cảm nhận.
+                    Chỉ số Sứ mệnh tiết lộ <span className='font-medium'>mục đích sống</span> của bạn — những điều bạn
+                    cần làm và đạt được trong cuộc sống.
                     <br />
                     <br />
-                    Nó phản ánh <span className='font-medium'>bản chất nội tâm</span>, và những{' '}
-                    <span className='font-medium'>động lực cảm xúc</span> khó thấy từ bên ngoài.
+                    Nó phản ánh <span className='font-medium'>lý tưởng, tham vọng</span> và các yếu tố giúp bạn cảm thấy
+                    hoàn thành trong cuộc sống.
                   </p>
                 </div>
               </DrawerBody>

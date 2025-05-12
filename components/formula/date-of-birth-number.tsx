@@ -5,6 +5,7 @@ import { Button } from '@heroui/button';
 import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDisclosure } from '@nextui-org/react';
 
 import { useNumerologyStore } from '@/stores/numerology';
+import { processNumbers } from '@/util/number.util';
 
 export const DateOfBirthNumber = () => {
   const { numerology } = useNumerologyStore();
@@ -15,19 +16,12 @@ export const DateOfBirthNumber = () => {
 
     if (isNaN(day) || day <= 0 || day > 31) return '—';
 
-    if (day === 11 || day === 29) return '11/2';
-    if (day === 22) return '22/4';
-
-    let sum = [...day.toString()].reduce((acc, digit) => acc + Number(digit), 0);
-
-    if (sum > 9) sum = [...sum.toString()].reduce((acc, digit) => acc + Number(digit), 0);
-
-    return sum.toString();
+    return processNumbers(day.toString().split('').map(Number));
   }
 
   return (
     <div>
-      <Card className='p-6 rounded-2xl rounded-2xl bg-white relative'>
+      <Card className='p-2 rounded-2xl bg-white relative'>
         <CardBody className='space-y-4'>
           <Button
             aria-label='Xem ý nghĩa chỉ số ngày sinh'
@@ -53,7 +47,7 @@ export const DateOfBirthNumber = () => {
         <DrawerContent>
           {(onClose) => (
             <>
-              <DrawerHeader className='flex flex-col gap-1'>📅 Chỉ số Ngày sinh (NS)</DrawerHeader>
+              <DrawerHeader className='flex flex-col gap-1'>Chỉ số Ngày sinh (NS)</DrawerHeader>
               <DrawerBody>
                 <div className='text-sm p-4 rounded-xl border shadow-sm bg-gray-50'>
                   <p className='font-semibold mb-2 text-gray-800'>📖 Ý nghĩa:</p>

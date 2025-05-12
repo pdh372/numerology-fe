@@ -5,6 +5,7 @@ import { Button } from '@heroui/button';
 import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDisclosure } from '@nextui-org/react';
 
 import { useNumerologyStore } from '@/stores/numerology';
+import { processNumbers } from '@/util/number.util';
 
 export const LifePathNumber = () => {
   const { numerology } = useNumerologyStore();
@@ -16,20 +17,7 @@ export const LifePathNumber = () => {
       .map(Number)
       .filter((n) => !isNaN(n));
 
-    let sum = allDigits.reduce((acc, n) => acc + n, 0);
-
-    if (sum === 11) return '11/2';
-    if (sum === 22) return '22/4';
-    if (sum === 33) return '33/6';
-
-    if (sum > 9) {
-      sum = sum
-        .toString()
-        .split('')
-        .reduce((acc, n) => acc + Number(n), 0);
-    }
-
-    return sum.toString();
+    return processNumbers(allDigits);
   }
 
   return (
@@ -51,7 +39,7 @@ export const LifePathNumber = () => {
           </p>
 
           <p className='text-gray-700'>
-            Chỉ số Đường đời của bạn là:{' '}
+            Chỉ số ĐĐ sau khi rút gọn:{' '}
             <span className='font-semibold text-primary'>
               {getLifePathNumber(numerology.day, numerology.month, numerology.year)}
             </span>
@@ -63,7 +51,7 @@ export const LifePathNumber = () => {
         <DrawerContent>
           {(onClose) => (
             <>
-              <DrawerHeader className='flex flex-col gap-1'>🛤️ Chỉ số Đường đời (ĐĐ)</DrawerHeader>
+              <DrawerHeader className='flex flex-col gap-1'>Chỉ số Đường đời (ĐĐ)</DrawerHeader>
               <DrawerBody>
                 <div className='text-sm p-4 rounded-xl border shadow-sm bg-gray-50'>
                   <p className='font-semibold mb-2 text-gray-800'>📖 Ý nghĩa:</p>

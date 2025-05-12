@@ -65,7 +65,24 @@ export const vowelMap = (str: string, index: number) => {
   }
 
   return {
+    character: str[index]?.toLowerCase(),
     isVowel: isVowel(char, str, index),
     number: letterToNumber[char] ?? 0,
   };
+};
+
+export const nameNormalizing = (fullName: string) => toEnglishLike(fullName).toLowerCase().replace(/\s/g, '').split('');
+
+export const getChartMatrix = (name: string): Record<number, number> => {
+  const clean = nameNormalizing(name);
+
+  const counts: Record<number, number> = {};
+
+  for (let char of clean) {
+    const num = letterToNumber[char];
+
+    counts[num] = (counts[num] || 0) + 1;
+  }
+
+  return counts;
 };
