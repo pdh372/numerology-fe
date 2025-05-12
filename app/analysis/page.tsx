@@ -13,7 +13,7 @@ import {
   SoulUrgeNumber,
   LifeStages,
   NumerologyChart,
-} from '@/component/formula';
+} from '@/components/formula';
 
 const Analysis = () => {
   const router = useRouter();
