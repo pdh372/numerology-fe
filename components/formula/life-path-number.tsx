@@ -6,7 +6,7 @@ import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDiscl
 
 import { useNumerologyStore } from '@/stores/numerology';
 
-export const LifePathIndex = () => {
+export const LifePathNumber = () => {
   const { numerology } = useNumerologyStore();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -18,9 +18,9 @@ export const LifePathIndex = () => {
 
     let sum = allDigits.reduce((acc, n) => acc + n, 0);
 
-    if (sum === 11 || sum === 22) {
-      return sum === 11 ? '11/2' : '22/4';
-    }
+    if (sum === 11) return '11/2';
+    if (sum === 22) return '22/4';
+    if (sum === 33) return '33/6';
 
     if (sum > 9) {
       sum = sum

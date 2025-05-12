@@ -1,5 +1,3 @@
-// app/numerology/layout.tsx
-
 export default function NumerologyLayout({ children }: { children: React.ReactNode }) {
   return (
     <section className='relative min-h-screen w-full bg-gradient-to-br from-white to-purple-100'>

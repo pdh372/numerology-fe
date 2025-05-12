@@ -6,7 +6,7 @@ import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDiscl
 
 import { useNumerologyStore } from '@/stores/numerology';
 
-export const AttitudeIndex = () => {
+export const AttitudeNumber = () => {
   const { numerology } = useNumerologyStore();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
@@ -16,6 +16,10 @@ export const AttitudeIndex = () => {
       .map(Number)
       .filter((n) => !isNaN(n));
     let sum = digits.reduce((acc, n) => acc + n, 0);
+
+    if (sum === 11) return '11/2';
+    if (sum === 22) return '22/4';
+    if (sum === 33) return '33/6';
 
     if (sum > 9) {
       sum = sum

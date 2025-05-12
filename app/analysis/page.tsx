@@ -1,13 +1,32 @@
-import { AttitudeIndex, DateOfBirthIndex, LifePathIndex } from '@/components/formula';
+'use client';
+
+import { Button } from '@heroui/button';
+import { Divider } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+
+import { AttitudeNumber, DateOfBirthNumber, LifePathNumber } from '@/components/formula';
+import { SoulUrgeNumber } from '@/components/formula/soul-urge-number';
 
 const Analysis = () => {
+  const router = useRouter();
+
   return (
-    <div className='flex flex-col gap-3'>
-      <DateOfBirthIndex />
+    <div>
+      <Button className='w-full' size='lg' onPress={() => router.push('/')}>
+        Quay Lại Trang Trước
+      </Button>
 
-      <AttitudeIndex />
+      <Divider className='my-1' />
 
-      <LifePathIndex />
+      <div className='flex flex-col gap-3'>
+        <DateOfBirthNumber />
+
+        <AttitudeNumber />
+
+        <LifePathNumber />
+
+        <SoulUrgeNumber />
+      </div>
     </div>
   );
 };

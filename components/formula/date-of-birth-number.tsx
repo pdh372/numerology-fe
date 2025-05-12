@@ -6,7 +6,7 @@ import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDiscl
 
 import { useNumerologyStore } from '@/stores/numerology';
 
-export const DateOfBirthIndex = () => {
+export const DateOfBirthNumber = () => {
   const { numerology } = useNumerologyStore();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 

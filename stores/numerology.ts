@@ -10,10 +10,10 @@ interface INumerologyStore {
 
 export const useNumerologyStore = create<INumerologyStore>((set) => ({
   numerology: {
-    name: '',
-    day: '',
-    month: '',
-    year: '',
+    name: 'Phạm Đức Huy',
+    day: '3',
+    month: '7',
+    year: '2000',
   },
 
   setName: (name: string) => set((store: INumerologyStore) => ({ numerology: { ...store.numerology, name } })),

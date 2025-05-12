@@ -1,3 +1,4 @@
-export * from './attitude-index';
-export * from './date-of-birth-index';
-export * from './life-path-index';
+export * from './attitude-number';
+export * from './date-of-birth-number';
+export * from './life-path-number';
+export * from './soul-urge-number';
