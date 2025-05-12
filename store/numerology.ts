@@ -14,14 +14,14 @@ interface INumerologyStore {
 
 export const useNumerologyStore = create<INumerologyStore>((set, get) => ({
   numerology: {
-    name: 'Phạm Đức Huy',
-    day: '3',
-    month: '7',
-    year: '2000',
-    // name: '',
-    // day: '',
-    // month: '',
-    // year: '',
+    // name: 'Phạm Đức Huy',
+    // day: '3',
+    // month: '7',
+    // year: '2000',
+    name: '',
+    day: '',
+    month: '',
+    year: '',
   },
 
   setName: (name: string) => set((store: INumerologyStore) => ({ numerology: { ...store.numerology, name } })),
