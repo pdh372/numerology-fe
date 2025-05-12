@@ -11,8 +11,9 @@ import {
   MissionNumber,
   PersonalityNumber,
   SoulUrgeNumber,
-} from '@/components/formula';
-import { NumerologyChart } from '@/components/formula/numerology-chart';
+  LifeStages,
+  NumerologyChart,
+} from '@/component/formula';
 
 const Analysis = () => {
   const router = useRouter();
@@ -39,6 +40,8 @@ const Analysis = () => {
         <MissionNumber />
 
         <NumerologyChart />
+
+        <LifeStages />
       </div>
     </div>
   );

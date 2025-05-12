@@ -5,19 +5,19 @@ import { Button } from '@heroui/button';
 import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDisclosure } from '@nextui-org/react';
 
 import { processNumbers } from '@/util/number.util';
-import { useNumerologyStore } from '@/stores/numerology';
+import { useNumerologyStore } from '@/store/numerology';
 import { toEnglishLike, vowelMap, nameNormalizing } from '@/util/string.util';
 
-export const SoulUrgeNumber = () => {
+export const PersonalityNumber = () => {
   const { numerology } = useNumerologyStore();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
-  function getSoulNumber(fullName: string): string {
+  function getPersonalityNumber(fullName: string): string {
     const nameNormalized = nameNormalizing(fullName);
 
     const mapped = nameNormalized
       .map((_, index, chars) => vowelMap(chars.join(''), index))
-      .filter((item) => item.isVowel);
+      .filter((item) => !item.isVowel);
 
     return processNumbers(mapped.map((item) => item.number));
   }
@@ -31,7 +31,7 @@ export const SoulUrgeNumber = () => {
             variant='light'
             onPress={onOpen}
           >
-            🕊️ Chỉ số Linh hồn (LH)
+            😎 Chỉ số Tính cách (TC)
           </Button>
 
           <p className='text-gray-700'>
@@ -39,7 +39,7 @@ export const SoulUrgeNumber = () => {
           </p>
 
           <p className='text-gray-700'>
-            Ký tự được tính (nguyên âm):{' '}
+            Ký tự được tính (phụ âm):{' '}
             <span className='font-semibold text-blue-500'>
               {toEnglishLike(numerology.name)
                 .toLowerCase()
@@ -48,7 +48,7 @@ export const SoulUrgeNumber = () => {
                   const isVowel = vowelMap(arr.join(''), i)?.isVowel;
 
                   return (
-                    <span key={i} className={isVowel ? 'text-blue-500' : 'text-gray-300'}>
+                    <span key={i} className={!isVowel ? 'text-blue-500' : 'text-gray-300'}>
                       {ch}
                     </span>
                   );
@@ -57,8 +57,8 @@ export const SoulUrgeNumber = () => {
           </p>
 
           <p className='text-gray-700'>
-            Chỉ số LH sau khi rút gọn:{' '}
-            <span className='font-semibold text-primary'>{getSoulNumber(numerology.name)}</span>
+            Chỉ số TC sau khi rút gọn:{' '}
+            <span className='font-semibold text-primary'>{getPersonalityNumber(numerology.name)}</span>
           </p>
         </CardBody>
       </Card>
@@ -67,17 +67,17 @@ export const SoulUrgeNumber = () => {
         <DrawerContent>
           {(onClose) => (
             <>
-              <DrawerHeader className='flex flex-col gap-1'>Chỉ số Linh hồn (LH)</DrawerHeader>
+              <DrawerHeader className='flex flex-col gap-1'>Chỉ số Tính cách (TC)</DrawerHeader>
               <DrawerBody>
                 <div className='text-sm p-4 rounded-xl border shadow-sm bg-gray-50'>
                   <p className='font-semibold mb-2 text-gray-800'>📖 Ý nghĩa:</p>
                   <p className='text-gray-700'>
-                    Chỉ số Linh hồn tiết lộ <span className='font-medium'>mong muốn sâu thẳm</span> bên trong bạn — điều
-                    thúc đẩy bạn hành động và cảm nhận.
+                    Chỉ số Tính cách tiết lộ <span className='font-medium'>tính cách bên ngoài</span> của bạn, là những
+                    phẩm chất mà người khác nhìn nhận và cảm nhận từ bạn. Nó cho thấy những đặc điểm dễ nhận thấy mà bạn
+                    thể hiện ra ngoài.
                     <br />
                     <br />
-                    Nó phản ánh <span className='font-medium'>bản chất nội tâm</span>, và những{' '}
-                    <span className='font-medium'>động lực cảm xúc</span> khó thấy từ bên ngoài.
+                    Tính cách của bạn sẽ có ảnh hưởng mạnh mẽ đến cách người khác nhìn nhận và tương tác với bạn.
                   </p>
                 </div>
               </DrawerBody>

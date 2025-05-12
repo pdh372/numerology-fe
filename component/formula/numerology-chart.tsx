@@ -3,7 +3,7 @@ import { Button } from '@heroui/button';
 import { useDisclosure, Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader } from '@nextui-org/react';
 import { Card, CardBody } from '@heroui/card';
 
-import { useNumerologyStore } from '@/stores/numerology';
+import { useNumerologyStore } from '@/store/numerology';
 import { getChartMatrix } from '@/util/string.util';
 
 const matrixMap = [

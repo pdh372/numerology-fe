@@ -4,7 +4,7 @@ import { useState, ChangeEventHandler } from 'react';
 import { Input, Button, Card, CardBody, CardHeader } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 
-import { useNumerologyStore } from '@/stores/numerology';
+import { useNumerologyStore } from '@/store/numerology';
 
 const Home = () => {
   const currentYear = new Date().getFullYear();
@@ -51,7 +51,7 @@ const Home = () => {
     setDay(day);
 
     if (+day >= maxDayInMonth) setDay(maxDayInMonth + '');
-    if (+day <= 1) setDay('');
+    if (+day < 1) setDay('');
   };
 
   const validateDate = () => {

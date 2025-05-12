@@ -4,7 +4,7 @@ import { Card, CardBody } from '@heroui/card';
 import { Button } from '@heroui/button';
 import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDisclosure } from '@nextui-org/react';
 
-import { useNumerologyStore } from '@/stores/numerology';
+import { useNumerologyStore } from '@/store/numerology';
 import { processNumbers } from '@/util/number.util';
 
 export const DateOfBirthNumber = () => {

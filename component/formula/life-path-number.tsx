@@ -4,21 +4,11 @@ import { Card, CardBody } from '@heroui/card';
 import { Button } from '@heroui/button';
 import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDisclosure } from '@nextui-org/react';
 
-import { useNumerologyStore } from '@/stores/numerology';
-import { processNumbers } from '@/util/number.util';
+import { useNumerologyStore } from '@/store/numerology';
 
 export const LifePathNumber = () => {
-  const { numerology } = useNumerologyStore();
+  const { numerology, getLifePathNumber } = useNumerologyStore();
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
-
-  function getLifePathNumber(day: string, month: string, year: string): string {
-    const allDigits = (day + month + year)
-      .split('')
-      .map(Number)
-      .filter((n) => !isNaN(n));
-
-    return processNumbers(allDigits);
-  }
 
   return (
     <div>
@@ -39,10 +29,7 @@ export const LifePathNumber = () => {
           </p>
 
           <p className='text-gray-700'>
-            Chỉ số ĐĐ sau khi rút gọn:{' '}
-            <span className='font-semibold text-primary'>
-              {getLifePathNumber(numerology.day, numerology.month, numerology.year)}
-            </span>
+            Chỉ số ĐĐ sau khi rút gọn: <span className='font-semibold text-primary'>{getLifePathNumber()}</span>
           </p>
         </CardBody>
       </Card>

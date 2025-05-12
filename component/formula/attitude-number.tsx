@@ -5,7 +5,7 @@ import { Button } from '@heroui/button';
 import { Drawer, DrawerBody, DrawerContent, DrawerFooter, DrawerHeader, useDisclosure } from '@nextui-org/react';
 
 import { processNumbers } from '@/util/number.util';
-import { useNumerologyStore } from '@/stores/numerology';
+import { useNumerologyStore } from '@/store/numerology';
 
 export const AttitudeNumber = () => {
   const { numerology } = useNumerologyStore();
